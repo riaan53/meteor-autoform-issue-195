@@ -1,0 +1,56 @@
+<head>
+  <title>meteor-autoform-issue-195</title>
+</head>
+
+<body>
+  {{> books}}
+  {{> updateFormModal}}
+</body>
+
+<template name="books">
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                  <th>Title (index and unique)</th>
+                  <th>Author (unique only)</th>
+                  <th>Copies</th>
+                  <th>LastCheckedOut</th>
+                  <th>Summary</th>
+                  <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each books}}
+                    <tr>
+                        <td>{{title}}</td>
+                        <td>{{author}}</td>
+                        <td>{{copies}}</td>
+                        <td>{{lastCheckedOut}}</td>
+                        <td>{{summary}}</td>
+                        <td><button class="btn btn-primary" type="button" data-toggle="modal" id="edit" data-target="#myModal">Edit</button></td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+</template>
+
+<template name="updateBookForm">
+  {{> quickForm collection="Books" doc=editingDoc id="updateBookForm" type="update"}}
+</template>
+
+<template name="updateFormModal">
+    <!-- Modal -->
+    <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Update Form</h4>
+          </div>
+          <div class="modal-body">
+              {{> updateBookForm}}
+          </div>
+        </div>
+      </div>
+    </div>
+</template>
