@@ -1,6 +1,17 @@
 meteor-autoform-issue-195
 =========================
 
-To reproduce the issue just click on one of the edit buttons and then submit without changeing anything.
+This repo is to demo the following issue: https://github.com/aldeed/meteor-autoform/issues/195
 
-Note: add bootsrtap-3 package - Forms are generated in a bootsrap modal 
+git clone and mrt install
+
+Steps to reproduce:
+  1. Click on one of the edit buttons
+  2. Update number of copies to 12
+  2. Click on submit button
+
+Results:
+'Title must be unique' and 'Author must be unique' validation error messages
+
+Expected results:
+Number of copies updated to 12 for entry
