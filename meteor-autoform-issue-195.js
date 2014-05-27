@@ -28,6 +28,31 @@ if (Meteor.isClient) {
   });
 }
 
+if (Meteor.isServer) {
+  Meteor.startup(function () {
+    // fixture to populate db at init startup
+    if (Books.find().count() === 0) {
+      Books.insert({
+        title: 'Book1',
+        author: 'auth1',
+        copies: '1'
+      });
+
+      Books.insert({
+        title: 'Book2',
+        author: 'auth2',
+        copies: '2'
+      });
+
+      Books.insert({
+        title: 'Book3',
+        author: 'auth3',
+        copies: '3'
+      });
+    }
+  });
+}
+
 //Add meteor collection and schema
 //Title and auther must be unique
 Books = new Meteor.Collection("books", {
@@ -48,17 +73,7 @@ Books = new Meteor.Collection("books", {
             type: Number,
             label: "Number of copies",
             min: 0
-        },
-        lastCheckedOut: {
-            type: Date,
-            label: "Last date this book was checked out",
-            optional: true
-        },
-        summary: {
-            type: String,
-            label: "Brief summary",
-            optional: true,
-            max: 1000
         }
     }
 });
+
